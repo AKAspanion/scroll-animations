@@ -76,8 +76,8 @@ const AnimatedVideo = () => {
           playsInline
           preload="auto"
           className="h-full w-full object-cover"
-          // src="https://assets.codepen.io/39255/output_960.mp4"
-          src="/landscape.mp4"
+          src="https://assets.codepen.io/39255/output_960.mp4"
+          // src="/landscape.mp4"
           ref={video}
         ></video>
       </div>
