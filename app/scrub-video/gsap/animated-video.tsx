@@ -19,12 +19,13 @@ const AnimatedVideo = () => {
 
   useGSAP(() => {
     if (video.current) {
+      const bottom = "500";
       gsap.timeline({
         scrollTrigger: {
           pin: true,
           trigger: ref.current,
           start: "top top",
-          end: "bottom+=200% bottom",
+          end: `bottom+=${bottom}% bottom`,
           markers: IS_DEV,
         },
       });
@@ -32,7 +33,7 @@ const AnimatedVideo = () => {
         scrollTrigger: {
           trigger: ref.current,
           start: "top-=20% top",
-          end: "bottom+=200% bottom",
+          end: `bottom+=${bottom}% bottom`,
           scrub: true,
           markers: IS_DEV,
           fastScrollEnd: true,

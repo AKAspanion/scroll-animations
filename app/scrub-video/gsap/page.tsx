@@ -15,7 +15,7 @@ export default function Home() {
       <DynamicAnimatedVideo />
       <section id="section-2" className="h-screen relative bg-yellow-500">
         <h1 className="whitespace-nowrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 uppercase font-semibold text-7xl pb-12">
-          Goodbye
+          Thanks
         </h1>
       </section>
     </main>
