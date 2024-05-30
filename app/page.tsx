@@ -1,25 +1,4 @@
-import Image from "next/image";
-
-const routes = [
-  {
-    name: "Scrub Video",
-    link: "/scrub-video",
-    children: [
-      {
-        name: "GSAP",
-        link: "/scrub-video/gsap",
-      },
-      {
-        name: "Motion",
-        link: "/scrub-video/motion",
-      },
-      {
-        name: "ScrollMagic",
-        link: "/scrub-video/scrollmagic",
-      },
-    ],
-  },
-];
+import { routes } from "@/constants/routes";
 
 export default function Home() {
   return (
@@ -28,12 +7,21 @@ export default function Home() {
         <div key={name}>
           <div className="py-4 text-lg font-semibold">{name}</div>
           <div className="flex gap-6">
-            {children.map(({ link, name }) => (
+            {children.map(({ link, disabled, name }) => (
               <div
                 className="hover:underline-offset-8 underline underline-offset-4 transition-all"
                 key={link}
               >
-                <a href={link}>{name}</a>
+                <a
+                  className={
+                    disabled
+                      ? "pointer-events-none cursor-default opacity-50"
+                      : ""
+                  }
+                  href={link}
+                >
+                  {name}
+                </a>
               </div>
             ))}
           </div>
