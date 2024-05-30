@@ -5,7 +5,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col p-24">
       {routes.map(({ name, children }) => (
         <div key={name}>
-          <div className="py-4 text-lg font-semibold">{name}</div>
+          <div className="py-4 pt-8 text-lg font-semibold">{name}</div>
           <div className="flex gap-6">
             {children.map(({ link, disabled, name }) => (
               <div

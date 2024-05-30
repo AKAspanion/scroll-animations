@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -19,37 +19,58 @@ const AnimatedVideo = () => {
 
   useGSAP(() => {
     if (video.current) {
-      const bottom = "600";
+      const bottom = 600;
       gsap.timeline({
         scrollTrigger: {
           pin: true,
           trigger: ref.current,
           start: "top top",
           end: `bottom+=${bottom}% bottom`,
-          markers: IS_DEV,
+          // markers: IS_DEV,
         },
       });
-      let tl = gsap.timeline({
+      const textTl = gsap.timeline({
         scrollTrigger: {
           trigger: ref.current,
-          start: "top-=20% top",
+          start: "top top",
+          end: `bottom+=50% bottom`,
+          // markers: IS_DEV,
+          scrub: true,
+        },
+      });
+      textTl.fromTo(
+        `#intro-title`,
+        { opacity: 1, translateY: 0 },
+        { opacity: 0, translateY: -100 }
+      );
+
+      const outroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#section-2",
+          start: "top-=200% top",
+          end: `top-=150% top`,
+          // markers: IS_DEV,
+          scrub: true,
+        },
+      });
+      outroTl.fromTo(
+        `#outro-title`,
+        { opacity: 0, translateY: 100 },
+        { opacity: 1, translateY: 0 }
+      );
+
+      let videoTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top top",
           end: `bottom+=${bottom}% bottom`,
           scrub: true,
           markers: IS_DEV,
           fastScrollEnd: true,
-          // onUpdate: (self) => {
-          //   if (video.current) {
-          //     console.log(self);
-          //     const newTime = video.current.duration * self.progress;
-          //     video.current.currentTime = newTime;
-          //     console.log(newTime);
-          //   }
-          // },
         },
       });
-
       video.current.onloadedmetadata = function () {
-        tl.fromTo(
+        videoTl.fromTo(
           video.current,
           {
             currentTime: 0,
@@ -71,8 +92,17 @@ const AnimatedVideo = () => {
       ref={ref}
       className="h-screen relative bg-[#B45114]"
     >
-      <h1 className="whitespace-nowrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 uppercase font-semibold text-7xl pb-12 drop-shadow-md">
-        Scrubbed Video
+      <h1
+        id="intro-title"
+        className="whitespace-nowrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 uppercase font-semibold text-7xl pb-12 drop-shadow-md"
+      >
+        introducing
+      </h1>
+      <h1
+        id="outro-title"
+        className="whitespace-nowrap text-[#B45114] absolute right-1/3 top-1/2 translate-x-1/2 -translate-y-1/2 uppercase font-semibold text-7xl pb-12 drop-shadow-md"
+      >
+        Breezy
       </h1>
       <div className="h-full flex">
         <video

@@ -20,6 +20,26 @@ export const routes = [
     ],
   },
   {
+    name: "Trigger Video",
+    link: "/trigger-video",
+    children: [
+      {
+        name: "GSAP",
+        link: "/trigger-video/gsap",
+      },
+      {
+        name: "Motion",
+        link: "/trigger-video/motion",
+        disabled: true,
+      },
+      {
+        name: "ScrollMagic",
+        link: "/trigger-video/scrollmagic",
+        disabled: true,
+      },
+    ],
+  },
+  {
     name: "Fade Items",
     link: "/fade-items",
     children: [
