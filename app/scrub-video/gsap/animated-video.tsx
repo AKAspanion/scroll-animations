@@ -29,7 +29,7 @@ const AnimatedVideo = () => {
           // markers: IS_DEV,
         },
       });
-      const textTl = gsap.timeline({
+      const introTl = gsap.timeline({
         scrollTrigger: {
           trigger: ref.current,
           start: "top top",
@@ -38,7 +38,7 @@ const AnimatedVideo = () => {
           scrub: true,
         },
       });
-      textTl.fromTo(
+      introTl.fromTo(
         `#intro-title`,
         { opacity: 1, translateY: 0 },
         { opacity: 0, translateY: -100 }

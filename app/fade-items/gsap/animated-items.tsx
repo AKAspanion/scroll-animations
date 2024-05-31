@@ -6,12 +6,11 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { IS_DEV } from "@/constants/app";
+import { fadeItemCards } from "@/constants/cards";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
-
-const cards = [1, 2, 3];
 
 const AnimatedItems = () => {
   const ref = useRef(null);
@@ -38,7 +37,7 @@ const AnimatedItems = () => {
         },
       });
 
-      cards.forEach((id) => {
+      fadeItemCards.forEach((id) => {
         tl.fromTo(
           `#item-card-${id}`,
           { opacity: 0, translateY: 50 },
@@ -52,7 +51,7 @@ const AnimatedItems = () => {
     <section id="animated-texts" ref={ref} className="h-screen relative">
       <div className="flex items-center justify-center h-full w-full p-8">
         <div className="flex gap-12 justify-center w-full">
-          {cards.map((id) => (
+          {fadeItemCards.map((id) => (
             <ItemCard id={`item-card-${id}`} key={id} mode={id} />
           ))}
         </div>
