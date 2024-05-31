@@ -122,7 +122,7 @@ const AnimatedVideo = () => {
     <section
       ref={ref}
       id="animated-video"
-      className="h-screen relative bg-[#B45114]"
+      className="h-screen relative bg-black"
     >
       <h1
         id="intro-title"
@@ -151,6 +151,15 @@ const AnimatedVideo = () => {
           />
         ))}
       </div>
+      {wildernessCards.map(({ id }) => (
+        <video
+          key={id}
+          muted
+          preload="auto"
+          className="d-none fixed -z-10"
+          src={`/landscape00${id}.mp4`}
+        />
+      ))}
     </section>
   );
 };
