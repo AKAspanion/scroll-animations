@@ -23,19 +23,36 @@ const AnimatedItems = () => {
           trigger: ref.current,
           start: "top top",
           end: `bottom+=${bottom}% bottom`,
-          markers: IS_DEV,
+          // markers: IS_DEV,
         },
       });
       let tl = gsap.timeline({
         scrollTrigger: {
           trigger: ref.current,
-          start: "top-=40% top",
+          id: "main",
+          start: "top top",
           end: `bottom+=${bottom}% bottom`,
           scrub: true,
-          markers: IS_DEV,
+          // markers: IS_DEV,
           fastScrollEnd: true,
         },
       });
+
+      const introTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ref.current,
+          id: "intro",
+          start: "top-=100% top",
+          end: `bottom+=50% bottom`,
+          // markers: IS_DEV,
+          scrub: true,
+        },
+      });
+      introTl.fromTo(
+        `#intro-title`,
+        { opacity: 0, translateY: 200 },
+        { opacity: 1, translateY: 0 }
+      );
 
       fadeItemCards.forEach((id) => {
         tl.fromTo(
@@ -48,8 +65,15 @@ const AnimatedItems = () => {
   });
 
   return (
-    <section id="animated-texts" ref={ref} className="h-screen relative">
-      <div className="flex items-center justify-center h-full w-full p-8">
+    <section
+      id="animated-texts"
+      ref={ref}
+      className="h-screen relative p-8 flex flex-col justify-between"
+    >
+      <div className="text-center text-4xl" id="intro-title">
+        Our Plans
+      </div>
+      <div className="flex items-center justify-center h-full w-full">
         <div className="flex gap-12 justify-center w-full">
           {fadeItemCards.map((id) => (
             <ItemCard id={`item-card-${id}`} key={id} mode={id} />

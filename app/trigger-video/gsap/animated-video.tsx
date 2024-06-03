@@ -4,12 +4,14 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { IS_DEV } from "@/constants/app";
 import { useDisableScroll } from "@/hooks/use-disable-scroll";
 import { wildernessCards } from "@/constants/cards";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 let prevNum = -1;
 
@@ -50,7 +52,7 @@ const AnimatedVideo = () => {
       const introTl = gsap.timeline({
         scrollTrigger: {
           trigger: ref.current,
-          start: "top-=20% top",
+          start: "top-=50% top",
           end: `bottom+=20% bottom`,
           markers: IS_DEV,
           scrub: true,
@@ -58,8 +60,8 @@ const AnimatedVideo = () => {
       });
       introTl.fromTo(
         `#intro-title`,
-        { opacity: 1, translateY: 0, duration: 5 },
-        { opacity: 0, translateY: -100, duration: 5 }
+        { opacity: 1, translateY: 0 },
+        { opacity: 0, translateY: -300 }
       );
 
       wildernessCards.forEach(({ id: num }) => {
